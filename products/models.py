@@ -9,7 +9,7 @@ class Menu(models.Model):
         db_table = 'menu'
 
 class Category(models.Model):
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=45)
 
     class Meta:
@@ -55,7 +55,7 @@ class Size(models.Model):
 
 
 class Nutrition(models.Model):
-    drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
+    drink = models.OneToOneField(Drink, on_delete=models.CASCADE)
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
     one_serving_kcal = models.DecimalField(max_digits=10, decimal_places=2)
     sodium_mg = models.DecimalField(max_digits=10, decimal_places=2)
